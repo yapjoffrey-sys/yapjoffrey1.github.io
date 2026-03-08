@@ -4,178 +4,541 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Joffrey Yap | Automation Systems Architect</title>
+<meta name="description" content="Joffrey Yap — Automation Systems Architect specializing in n8n workflow automation, Docker deployment, and IT system optimization. Save time and scale your business.">
+<meta property="og:title" content="Joffrey Yap | Automation Systems Architect">
+<meta property="og:description" content="Custom workflow automation systems using Docker & n8n. Helping businesses operate 10x faster.">
+<meta property="og:type" content="website">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
 
 <style>
-/* Fade-in animation */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 1s ease forwards;
-}
-@keyframes fadeInUp {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* General styles */
-*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
+/* ===== RESET & BASE ===== */
+*{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  background:linear-gradient(135deg,#0f172a,#1e293b);
+  font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+  background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);
   color:#e2e8f0;
+  overflow-x:hidden;
 }
 
-/* NAVBAR */
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== NAVBAR ===== */
 nav{
   position:fixed;
   top:0;
   width:100%;
-  background:rgba(15,23,42,0.8);
-  backdrop-filter:blur(10px);
+  background:rgba(15,23,42,0.85);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
   padding:15px 50px;
   display:flex;
   justify-content:space-between;
   align-items:center;
   z-index:1000;
+  border-bottom:1px solid rgba(56,189,248,0.1);
 }
-nav a{
+.nav-brand{
+  font-size:20px;
+  font-weight:700;
   color:#38bdf8;
-  text-decoration:none;
-  margin-left:20px;
-  font-weight:500;
+  letter-spacing:-0.5px;
 }
-nav a:hover{color:#0ea5e9}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+.nav-links a{
+  color:#cbd5e1;
+  text-decoration:none;
+  font-weight:500;
+  font-size:15px;
+  padding:8px 16px;
+  border-radius:8px;
+  transition:all 0.3s ease;
+}
+.nav-links a:hover{
+  color:#38bdf8;
+  background:rgba(56,189,248,0.1);
+}
 
-/* HERO */
+/* Hamburger menu */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+  background:none;
+  border:none;
+  padding:5px;
+  z-index:1001;
+}
+.hamburger span{
+  width:25px;
+  height:2px;
+  background:#e2e8f0;
+  transition:all 0.3s ease;
+  border-radius:2px;
+}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* ===== HERO ===== */
 .hero{
-  height:100vh;
+  min-height:100vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:20px;
+  padding:100px 20px 60px;
+  position:relative;
 }
-.hero h1{font-size:52px;margin-bottom:15px}
-.hero p{color:#94a3b8;font-size:18px;margin-bottom:30px;max-width:600px}
+.hero::before{
+  content:'';
+  position:absolute;
+  top:20%;
+  left:50%;
+  transform:translateX(-50%);
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle, rgba(56,189,248,0.08) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero h1{
+  font-size:clamp(32px, 5vw, 56px);
+  margin-bottom:20px;
+  font-weight:800;
+  line-height:1.1;
+  background:linear-gradient(135deg, #e2e8f0 0%, #38bdf8 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero p{
+  color:#94a3b8;
+  font-size:clamp(16px, 2vw, 19px);
+  margin-bottom:35px;
+  max-width:620px;
+  line-height:1.7;
+}
 .button{
-  padding:12px 25px;
+  display:inline-block;
+  padding:14px 30px;
   border-radius:10px;
-  background:#38bdf8;
+  background:linear-gradient(135deg,#38bdf8,#0ea5e9);
   color:#0f172a;
   text-decoration:none;
-  font-weight:bold;
-  transition:.3s;
+  font-weight:700;
+  font-size:15px;
+  transition:all 0.3s ease;
+  border:none;
+  cursor:pointer;
+  box-shadow:0 4px 15px rgba(56,189,248,0.3);
 }
-.button:hover{background:#0ea5e9;transform:translateY(-3px)}
-
-/* SECTION */
-section{padding:80px 20px;text-align:center}
-.section-title{
-  font-size:32px;
-  margin-bottom:40px;
+.button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 25px rgba(56,189,248,0.4);
+}
+.button-outline{
+  display:inline-block;
+  padding:14px 30px;
+  border-radius:10px;
+  background:transparent;
   color:#38bdf8;
+  text-decoration:none;
+  font-weight:700;
+  font-size:15px;
+  transition:all 0.3s ease;
+  border:2px solid #38bdf8;
+  cursor:pointer;
+}
+.button-outline:hover{
+  background:rgba(56,189,248,0.1);
+  transform:translateY(-3px);
 }
 
-/* CARD */
+/* ===== SECTIONS ===== */
+section{
+  padding:100px 20px;
+  text-align:center;
+}
+.section-title{
+  font-size:clamp(26px, 3.5vw, 36px);
+  margin-bottom:15px;
+  color:#38bdf8;
+  font-weight:700;
+}
+.section-subtitle{
+  color:#94a3b8;
+  font-size:17px;
+  margin-bottom:50px;
+  max-width:600px;
+  margin-left:auto;
+  margin-right:auto;
+  line-height:1.6;
+}
+
+/* ===== CARDS ===== */
 .card{
-  background:rgba(30,41,59,0.6);
+  background:rgba(30,41,59,0.5);
   backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
   border-radius:20px;
-  padding:30px;
+  padding:35px;
   margin:20px auto;
   width:90%;
   max-width:900px;
-  box-shadow:0 15px 35px rgba(0,0,0,0.4);
-  transition:.3s;
+  box-shadow:0 15px 35px rgba(0,0,0,0.3);
+  transition:all 0.3s ease;
+  border:1px solid rgba(56,189,248,0.08);
 }
-.card:hover{transform:translateY(-5px)}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(56,189,248,0.2);
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
 
-/* GRID */
+/* ===== GRID ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
+  gap:25px;
   max-width:1100px;
   margin:auto;
 }
 
-/* PRICING */
+/* ===== ABOUT ===== */
+.about-content{
+  text-align:left;
+  line-height:1.8;
+}
+.about-content p{
+  margin-bottom:15px;
+}
+.about-buttons{
+  display:flex;
+  gap:15px;
+  margin-top:25px;
+  flex-wrap:wrap;
+}
+
+/* ===== SERVICES ===== */
+.service-icon{
+  font-size:36px;
+  color:#38bdf8;
+  margin-bottom:20px;
+}
+.service-card h3{
+  font-size:20px;
+  margin-bottom:12px;
+  color:#f1f5f9;
+}
+.service-card p{
+  color:#94a3b8;
+  line-height:1.7;
+}
+
+/* ===== PRICING ===== */
+.pricing-card{
+  text-align:center;
+  position:relative;
+}
+.pricing-card.featured{
+  border-color:rgba(56,189,248,0.3);
+  box-shadow:0 15px 40px rgba(56,189,248,0.15);
+}
+.pricing-badge{
+  position:absolute;
+  top:-12px;
+  left:50%;
+  transform:translateX(-50%);
+  background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+  color:#0f172a;
+  padding:5px 20px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:700;
+}
+.pricing-card h3{
+  font-size:22px;
+  margin-bottom:5px;
+  color:#f1f5f9;
+}
 .price{
-  font-size:32px;
+  font-size:36px;
   margin:15px 0;
   color:#22c55e;
+  font-weight:800;
+}
+.pricing-features{
+  list-style:none;
+  padding:0;
+  margin:20px 0 25px;
+  text-align:left;
+}
+.pricing-features li{
+  padding:8px 0;
+  color:#94a3b8;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.pricing-features li i{
+  color:#22c55e;
+  font-size:14px;
 }
 
-/* FOOTER */
-footer{
-  padding:40px;
-  text-align:center;
+/* ===== TESTIMONIAL ===== */
+.testimonial-card{
+  text-align:left;
+  position:relative;
+}
+.testimonial-card blockquote{
+  font-size:18px;
+  line-height:1.8;
+  color:#cbd5e1;
+  font-style:italic;
+  margin-bottom:15px;
+}
+.testimonial-card blockquote::before{
+  content:'\201C';
+  font-size:60px;
+  color:rgba(56,189,248,0.3);
+  line-height:1;
+  display:block;
+  margin-bottom:-10px;
+}
+.testimonial-author{
   color:#64748b;
+  font-size:14px;
 }
 
-/* CHAT WIDGET */
+/* ===== CONTACT ===== */
+.contact-links{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  align-items:center;
+}
+.contact-link{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  color:#cbd5e1;
+  text-decoration:none;
+  font-size:17px;
+  transition:color 0.3s ease;
+  padding:8px 0;
+}
+.contact-link:hover{
+  color:#38bdf8;
+}
+.contact-link i{
+  color:#38bdf8;
+  font-size:20px;
+  width:24px;
+  text-align:center;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  padding:40px 20px;
+  text-align:center;
+  color:#475569;
+  border-top:1px solid rgba(56,189,248,0.08);
+  font-size:14px;
+}
+
+/* ===== CHAT TOGGLE ===== */
 #chatToggle{
   position:fixed;
-  bottom:20px;
-  right:20px;
+  bottom:25px;
+  right:25px;
   width:60px;
   height:60px;
   border-radius:50%;
-  background:#38bdf8;
+  background:linear-gradient(135deg,#38bdf8,#0ea5e9);
   border:none;
+  color:#0f172a;
   font-size:22px;
   cursor:pointer;
   z-index:9999;
+  box-shadow:0 4px 20px rgba(56,189,248,0.4);
+  transition:all 0.3s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+#chatToggle:hover{
+  transform:scale(1.1);
+  box-shadow:0 6px 25px rgba(56,189,248,0.5);
+}
+
+/* ===== RESUME MODAL ===== */
+.modal-overlay{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.85);
+  justify-content:center;
+  align-items:center;
+  z-index:10000;
+}
+.modal-overlay.active{
+  display:flex;
+}
+.modal-close{
+  position:absolute;
+  top:20px;
+  right:40px;
+  font-size:36px;
+  color:#e2e8f0;
+  cursor:pointer;
+  background:none;
+  border:none;
+  transition:color 0.3s ease;
+  line-height:1;
+}
+.modal-close:hover{
+  color:#38bdf8;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  nav{
+    padding:12px 20px;
+  }
+  .hamburger{
+    display:flex;
+  }
+  .nav-links{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:70%;
+    max-width:300px;
+    height:100vh;
+    background:rgba(15,23,42,0.98);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    flex-direction:column;
+    justify-content:center;
+    gap:0;
+    transition:right 0.3s ease;
+    z-index:1000;
+  }
+  .nav-links.open{
+    right:0;
+  }
+  .nav-links a{
+    font-size:18px;
+    padding:15px 30px;
+    width:100%;
+    text-align:center;
+  }
+  .hero h1{
+    font-size:clamp(28px, 7vw, 42px);
+  }
+  section{
+    padding:60px 15px;
+  }
+  .grid{
+    grid-template-columns:1fr;
+    gap:15px;
+  }
+  .card{
+    padding:25px;
+    width:95%;
+  }
+  .about-buttons{
+    justify-content:center;
+  }
+  .modal-close{
+    top:15px;
+    right:20px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <div><strong>JY Automation</strong></div>
-  <div>
+<!-- NAVBAR -->
+<nav role="navigation" aria-label="Main navigation">
+  <div class="nav-brand">JY Automation</div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
     <a href="#about-me">About Me</a>
     <a href="#services">Services</a>
     <a href="#pricing">Pricing</a>
+    <a href="#testimonials">Feedback</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<div class="hero">
-  <h1>Automate. Scale. Eliminate Manual Work.</h1>
-  <p>I design fully automated workflow systems using Docker & n8n that help businesses operate 10x faster with zero repetitive tasks.</p>
+<!-- HERO -->
+<header class="hero">
+  <h1>Automate. Scale.<br>Eliminate Manual Work.</h1>
+  <p>I design fully automated workflow systems using Docker &amp; n8n that help businesses operate 10x faster with zero repetitive tasks.</p>
   <a href="#pricing" class="button">View Automation Packages</a>
-</div>
+</header>
 
 <!-- ABOUT ME -->
 <section id="about-me">
   <h2 class="section-title">About Me</h2>
-  <div class="card fade-in" style="animation-delay:0.2s">
-    <p>Hello! I'm <strong>Joffrey Yap</strong>, an Automation Systems Architect and Workflow Engineer. I help businesses save time and scale operations by designing automated workflows using n8n, Docker, and secure IT systems. I specialize in Ubuntu server setup, Windows scripting, and secure device provisioning.</p>
-    <p>Click the button below to view my resume.</p>
-    <a href="javascript:void(0)" onclick="openResumeModal()" class="button">View Resume</a>
+  <p class="section-subtitle">Automation architect helping businesses work smarter, not harder.</p>
+  <div class="card fade-in about-content">
+    <p>Hello! I'm <strong>Joffrey Yap</strong>, an Automation Systems Architect and Workflow Engineer. I help businesses save time and scale operations by designing automated workflows using n8n, Docker, and secure IT systems.</p>
+    <p>I specialize in Ubuntu server setup, Windows scripting, and secure device provisioning &mdash; turning manual, repetitive processes into streamlined, hands-free systems.</p>
+    <div class="about-buttons">
+      <button class="button" id="resumeBtn" type="button">
+        <i class="fas fa-file-alt"></i> View Resume
+      </button>
+      <a href="#contact" class="button-outline">
+        <i class="fas fa-envelope"></i> Get in Touch
+      </a>
+    </div>
   </div>
 </section>
 
 <!-- SERVICES -->
 <section id="services">
   <h2 class="section-title">Core Services</h2>
+  <p class="section-subtitle">End-to-end automation solutions tailored to your business needs.</p>
   <div class="grid">
-    <div class="card fade-in" style="animation-delay:0.2s">
+    <div class="card fade-in service-card">
+      <div class="service-icon"><i class="fas fa-cogs"></i></div>
       <h3>Workflow Automation</h3>
-      <p>Custom n8n systems connecting Gmail, APIs, CRMs & cloud apps.</p>
+      <p>Custom n8n systems connecting Gmail, APIs, CRMs &amp; cloud apps into seamless automated pipelines.</p>
     </div>
-    <div class="card fade-in" style="animation-delay:0.4s">
+    <div class="card fade-in service-card">
+      <div class="service-icon"><i class="fab fa-docker"></i></div>
       <h3>Docker Production Setup</h3>
-      <p>Secure containerized deployment for scalable infrastructure.</p>
+      <p>Secure containerized deployment for scalable, reliable infrastructure that runs anywhere.</p>
     </div>
-    <div class="card fade-in" style="animation-delay:0.6s">
+    <div class="card fade-in service-card">
+      <div class="service-icon"><i class="fas fa-server"></i></div>
       <h3>IT System Optimization</h3>
-      <p>Windows scripting, server setup & performance hardening.</p>
+      <p>Windows scripting, Ubuntu server setup &amp; performance hardening for peak efficiency.</p>
     </div>
   </div>
 </section>
@@ -183,88 +546,188 @@ footer{
 <!-- PRICING -->
 <section id="pricing">
   <h2 class="section-title">Automation Packages</h2>
+  <p class="section-subtitle">Choose the package that fits your automation needs.</p>
   <div class="grid">
-    <div class="card fade-in" style="animation-delay:0.2s">
+    <div class="card fade-in pricing-card">
       <h3>Starter</h3>
       <p class="price">$150</p>
-      <p>Single workflow automation</p>
-      <p>Email/API integration</p>
-      <p>Basic deployment</p>
+      <ul class="pricing-features">
+        <li><i class="fas fa-check"></i> Single workflow automation</li>
+        <li><i class="fas fa-check"></i> Email/API integration</li>
+        <li><i class="fas fa-check"></i> Basic deployment</li>
+      </ul>
+      <a href="#contact" class="button-outline">Get Started</a>
     </div>
-    <div class="card fade-in" style="animation-delay:0.4s">
+    <div class="card fade-in pricing-card featured">
+      <div class="pricing-badge">Most Popular</div>
       <h3>Business</h3>
       <p class="price">$450</p>
-      <p>Multi-workflow system</p>
-      <p>Docker deployment</p>
-      <p>Security hardening</p>
+      <ul class="pricing-features">
+        <li><i class="fas fa-check"></i> Multi-workflow system</li>
+        <li><i class="fas fa-check"></i> Docker deployment</li>
+        <li><i class="fas fa-check"></i> Security hardening</li>
+        <li><i class="fas fa-check"></i> Priority support</li>
+      </ul>
+      <a href="#contact" class="button">Get Started</a>
     </div>
-    <div class="card fade-in" style="animation-delay:0.6s">
+    <div class="card fade-in pricing-card">
       <h3>Enterprise</h3>
       <p class="price">Custom</p>
-      <p>Full automation architecture</p>
-      <p>Server provisioning</p>
-      <p>Ongoing support</p>
+      <ul class="pricing-features">
+        <li><i class="fas fa-check"></i> Full automation architecture</li>
+        <li><i class="fas fa-check"></i> Server provisioning</li>
+        <li><i class="fas fa-check"></i> Ongoing support</li>
+        <li><i class="fas fa-check"></i> Dedicated consultation</li>
+      </ul>
+      <a href="#contact" class="button-outline">Contact Me</a>
     </div>
   </div>
 </section>
 
 <!-- CLIENT FEEDBACK -->
-<section>
+<section id="testimonials">
   <h2 class="section-title">Client Feedback</h2>
-  <div class="card fade-in" style="animation-delay:0.2s">
-    <p>"Joffrey automated our internal workflow and saved us 20+ hours per week. Highly recommended."</p>
+  <p class="section-subtitle">What clients say about working together.</p>
+  <div class="card fade-in testimonial-card">
+    <blockquote>Joffrey automated our internal workflow and saved us 20+ hours per week. His Docker setup is rock-solid and the n8n integrations run flawlessly. Highly recommended.</blockquote>
+    <p class="testimonial-author">&mdash; Satisfied Client</p>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
   <h2 class="section-title">Let's Build Your Automation</h2>
-  <div class="card fade-in" style="animation-delay:0.2s">
-    <p>Email: yapjoffrey@gmail.com</p>
-    <p>LinkedIn: linkedin.com/in/joffrey-yap-0a78a62b1</p>
-    <p>Facebook: facebook.com/joffrey.yap</p>
+  <p class="section-subtitle">Ready to eliminate manual work? Reach out and let's talk.</p>
+  <div class="card fade-in">
+    <div class="contact-links">
+      <a href="mailto:yapjoffrey@gmail.com" class="contact-link" aria-label="Send email">
+        <i class="fas fa-envelope"></i> yapjoffrey@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/joffrey-yap-0a78a62b1" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="LinkedIn profile">
+        <i class="fab fa-linkedin"></i> linkedin.com/in/joffrey-yap-0a78a62b1
+      </a>
+      <a href="https://facebook.com/joffrey.yap" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Facebook profile">
+        <i class="fab fa-facebook"></i> facebook.com/joffrey.yap
+      </a>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-© 2026 Joffrey Yap | Automation Systems Architect
+  <p>&copy; 2026 Joffrey Yap | Automation Systems Architect</p>
 </footer>
 
 <!-- RESUME MODAL -->
-<div id="resumeModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
-background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:9999;">
-  <span style="position:absolute; top:20px; right:40px; font-size:30px; color:white; cursor:pointer;" onclick="closeResumeModal()">&times;</span>
-  <iframe id="resumeFrame" style="width:80%; height:80%; border:none;"></iframe>
+<div class="modal-overlay" id="resumeModal" role="dialog" aria-modal="true" aria-label="Resume viewer">
+  <button class="modal-close" id="resumeClose" aria-label="Close resume viewer">&times;</button>
+  <iframe id="resumeFrame" style="width:85%;max-width:900px;height:85%;border:none;border-radius:12px;" title="Joffrey Yap Resume"></iframe>
 </div>
 
 <!-- CHAT WIDGET -->
-<button id="chatToggle">💬</button>
+<button id="chatToggle" aria-label="Open chat"><i class="fas fa-comment-dots"></i></button>
 
+<!-- NON-MODULE SCRIPT: modal functions, scroll animations, hamburger -->
+<script>
+// Resume modal
+var resumeModal = document.getElementById('resumeModal');
+var resumeFrame = document.getElementById('resumeFrame');
+var resumeBtn = document.getElementById('resumeBtn');
+var resumeClose = document.getElementById('resumeClose');
+
+function openResumeModal() {
+  resumeFrame.src = 'Joffrey_Yap_Resume.pdf';
+  resumeModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeResumeModal() {
+  resumeModal.classList.remove('active');
+  resumeFrame.src = '';
+  document.body.style.overflow = '';
+}
+
+resumeBtn.addEventListener('click', openResumeModal);
+resumeClose.addEventListener('click', closeResumeModal);
+
+// Close modal on overlay click
+resumeModal.addEventListener('click', function(e) {
+  if (e.target === resumeModal) closeResumeModal();
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && resumeModal.classList.contains('active')) {
+    closeResumeModal();
+  }
+});
+
+// Scroll-triggered fade-in using Intersection Observer
+var fadeElements = document.querySelectorAll('.fade-in');
+var observerOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var siblings = entry.target.parentElement.querySelectorAll('.fade-in');
+      var staggerIndex = Array.prototype.indexOf.call(siblings, entry.target);
+      entry.target.style.transitionDelay = (staggerIndex * 0.15) + 's';
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+fadeElements.forEach(function(el) { observer.observe(el); });
+
+// Hamburger menu
+var hamburger = document.getElementById('hamburger');
+var navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', function() {
+  var isOpen = navLinks.classList.toggle('open');
+  hamburger.classList.toggle('active');
+  hamburger.setAttribute('aria-expanded', isOpen);
+});
+
+// Close mobile nav on link click
+navLinks.querySelectorAll('a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    navLinks.classList.remove('open');
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+  });
+});
+
+// Close mobile nav on outside click
+document.addEventListener('click', function(e) {
+  if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+    navLinks.classList.remove('open');
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+});
+</script>
+
+<!-- MODULE SCRIPT: n8n chat widget -->
 <script type="module">
 import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-let chatInstance;
-document.getElementById('chatToggle').addEventListener('click', () => {
+var chatInstance = null;
+var chatToggleBtn = document.getElementById('chatToggle');
+
+chatToggleBtn.addEventListener('click', function() {
   if (!chatInstance) {
     chatInstance = createChat({
       webhookUrl: 'https://portfoliobot.app.n8n.cloud/webhook/c65e8a36-e153-44ef-be67-2be0e37a0ca8/chat',
       open: true
     });
+    // Hide our custom button once n8n chat creates its own toggle
+    chatToggleBtn.style.display = 'none';
   } else {
-    const chatDiv = document.querySelector('.n8n-chat-wrapper');
-    if (chatDiv.style.display === 'none') chatDiv.style.display = 'block';
-    else chatDiv.style.display = 'none';
+    var chatDiv = document.querySelector('.n8n-chat-wrapper');
+    if (chatDiv) {
+      chatDiv.style.display = chatDiv.style.display === 'none' ? 'block' : 'none';
+    }
   }
 });
-
-function openResumeModal() {
-  document.getElementById('resumeFrame').src = 'Joffrey_Yap_Resume.pdf';
-  document.getElementById('resumeModal').style.display = 'flex';
-}
-
-function closeResumeModal() {
-  document.getElementById('resumeModal').style.display = 'none';
-}
 </script>
 
 </body>
