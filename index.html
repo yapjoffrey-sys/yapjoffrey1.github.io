@@ -1,54 +1,35 @@
-<section id="portfolio" class="portfolio-section">
-    <h2>My Projects</h2>
-    <div class="portfolio-grid">
-        <div class="project-card">
-            <h3>Project One</h3>
-            <p>Description of project one. Tech stack: HTML, CSS, JavaScript.</p>
-        </div>
-        <div class="project-card">
-            <h3>Project Two</h3>
-            <p>Description of project two. Tech stack: React, Node.js.</p>
-        </div>
-        <div class="project-card">
-            <h3>Project Three</h3>
-            <p>Description of project three. Tech stack: Python, Flask.</p>
-        </div>
-        <div class="project-card">
-            <h3>Project Four</h3>
-            <p>Description of project four. Tech stack: Ruby on Rails.</p>
-        </div>
-    </div>
+<section id="portfolio" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 20px; border-radius: 15px; display: flex; flex-direction: column; align-items: center;">
+  <h2 style="color: #007bff;">My Projects</h2>
+  <div class="project" style="border: 1px solid #007bff; border-radius: 10px; width: 80%; margin: 10px;"><h3>Auto Reply Gmail AI Agent</h3>
+    <div class="tech-stack" style="color: #fff;">Tech Stack: JavaScript, Node.js, Gmail API</div>
+    <ul class="features" style="color: #fff;">
+      <li>Automatic email responses based on user queries</li>
+      <li>Customizable templates for different email types</li>
+      <li>Detailed analytics on email interactions</li>
+    </ul>
+  </div>
+  <div class="project" style="border: 1px solid #007bff; border-radius: 10px; width: 80%; margin: 10px;"><h3>Customer Support Workflow</h3>
+    <div class="tech-stack" style="color: #fff;">Tech Stack: React, Redux, Firebase</div>
+    <ul class="features" style="color: #fff;">
+      <li>Real-time chat features for customer service</li>
+      <li>Integration with popular support ticket systems</li>
+      <li>Reporting and analytics dashboard for support agents</li>
+    </ul>
+  </div>
+  <div class="project" style="border: 1px solid #007bff; border-radius: 10px; width: 80%; margin: 10px;"><h3>Conference Info Assistant</h3>
+    <div class="tech-stack" style="color: #fff;">Tech Stack: Python, Flask, SQLAlchemy</div>
+    <ul class="features" style="color: #fff;">
+      <li>Provides real-time event updates and scheduling</li>
+      <li>Speaker profiles and session details</li>
+      <li>User-friendly interface for navigating conferences</li>
+    </ul>
+  </div>
+  <div class="project" style="border: 1px solid #007bff; border-radius: 10px; width: 80%; margin: 10px;"><h3>PreSale AI Agent</h3>
+    <div class="tech-stack" style="color: #fff;">Tech Stack: Java, Spring Boot, REST API</div>
+    <ul class="features" style="color: #fff;">
+      <li>Predictive analysis for product demand</li>
+      <li>Integration with e-commerce platforms</li>
+      <li>Dynamic pricing based on market trends</li>
+    </ul>
+  </div>
 </section>
-
-<style>
-.portfolio-section {
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-}
-
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 16px;
-}
-
-.project-card {
-    background-color: white;
-    padding: 16px;
-    border-radius: 6px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-}
-
-.project-card:hover {
-    transform: scale(1.02);
-}
-</style>
