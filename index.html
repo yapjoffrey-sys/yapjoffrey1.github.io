@@ -1,35 +1,154 @@
-<section id="portfolio" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 20px; border-radius: 15px; display: flex; flex-direction: column; align-items: center;">
-  <h2 style="color: #007bff;">My Projects</h2>
-  <div class="project" style="border: 1px solid #007bff; border-radius: 10px; width: 80%; margin: 10px;"><h3>Auto Reply Gmail AI Agent</h3>
-    <div class="tech-stack" style="color: #fff;">Tech Stack: JavaScript, Node.js, Gmail API</div>
-    <ul class="features" style="color: #fff;">
-      <li>Automatic email responses based on user queries</li>
-      <li>Customizable templates for different email types</li>
-      <li>Detailed analytics on email interactions</li>
-    </ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joffrey Yap | Automation & IT Support</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background: #0f172a; color: #e2e8f0; text-align: center; padding: 50px; }
+    header { padding: 60px 20px; }
+    header h1 { font-size: 48px; margin-bottom: 5px; }
+    header p { color: #94a3b8; margin-bottom: 20px; }
+    .button { display: inline-block; padding: 12px 25px; background: #38bdf8; color: #0f172a; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+    .button:hover { background: #0ea5e9; transform: translateY(-2px); }
+    .button-green { background: #22c55e; margin-left: 10px; }
+    section { margin-top: 50px; }
+    .card { background: #1e293b; padding: 30px; margin: 20px auto; width: 80%; border-radius: 16px; transition: 0.3s ease; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+    .card:hover { background: #24344d; transform: translateY(-5px); }
+    h2 { color: #38bdf8; margin-bottom: 15px; }
+    p, ul { text-align: left; margin-left: 10px; }
+    ul li { margin-bottom: 8px; }
+    footer { margin-top: 60px; font-size: 14px; color: #64748b; }
+    .icon-link { color: #38bdf8; text-decoration: none; font-size: 18px; margin-left: 5px; }
+    .icon-link:hover { color: #0ea5e9; }
+
+    /* CHAT STYLING */
+    #chatbox { position: fixed; bottom: 20px; right: 20px; width: 320px; height: 420px; border-radius: 16px; padding: 15px; background: #0f172a; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #38bdf8; display: flex; flex-direction: column; justify-content: space-between; z-index: 9999; }
+    #messages { flex: 1; overflow-y: auto; margin-bottom: 10px; font-size: 14px; }
+    .input-area { display: flex; }
+    #userMessage { flex: 1; padding: 8px; border-radius: 8px; border: 1px solid #38bdf8; background: #1e293b; color: #e2e8f0; }
+    #sendBtn { padding: 8px 12px; margin-left: 5px; border-radius: 8px; border: none; background: #38bdf8; color: #0f172a; font-weight: bold; cursor: pointer; }
+    #sendBtn:hover { background: #0ea5e9; }
+    #sendBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .user-msg { text-align: right; margin-bottom: 8px; }
+    .user-msg span { background: #38bdf8; color: #0f172a; padding: 6px 10px; border-radius: 10px; display: inline-block; text-align: left; }
+    .bot-msg { text-align: left; margin-bottom: 8px; }
+    .bot-msg span { background: #1e293b; border: 1px solid #38bdf8; padding: 6px 10px; border-radius: 10px; display: inline-block; }
+    .error-msg span { color: #f87171; border-color: #f87171; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Joffrey Yap</h1>
+    <p>Automation Consultant | Workflow Engineer | Docker & n8n Specialist</p>
+    <a href="#contact" class="button">Contact Me</a>
+    <a href="mailto:yapjoffrey@gmail.com" class="button button-green">Hire Me for Automation Projects</a>
+  </header>
+
+  <section>
+    <div class="card">
+      <h2>About Me</h2>
+      <p>I help businesses automate workflows and optimize IT systems using Docker, n8n, Windows scripting, and secure server deployment. I build clean, scalable, production-ready solutions.</p>
+    </div>
+
+    <div class="card">
+      <h2>Core Skills</h2>
+      <ul>
+        <li>✔ Docker Production Deployment</li>
+        <li>✔ n8n Workflow Automation</li>
+        <li>✔ Ubuntu Server Configuration</li>
+        <li>✔ Windows PowerShell Scripting</li>
+        <li>✔ Secure Device Provisioning</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Featured Projects</h2>
+      <ul>
+        <li>🚀 Automated Gmail Response System (n8n)</li>
+        <li>🚀 Secure Remote Device Setup SOP</li>
+        <li>🚀 Windows Update Control Script</li>
+      </ul>
+    </div>
+
+    <div class="card" id="contact">
+      <h2>Contact</h2>
+      <p><i class="fa fa-envelope"></i><a class="icon-link" href="mailto:yapjoffrey@gmail.com" target="_blank">yapjoffrey@gmail.com</a></p>
+      <p><i class="fa fa-linkedin"></i><a class="icon-link" href="https://www.linkedin.com/in/joffrey-yap-0a78a62b1/" target="_blank">linkedin.com/in/joffrey-yap-0a78a62b1/</a></p>
+      <p><i class="fa fa-facebook"></i><a class="icon-link" href="https://www.facebook.com/joffrey.yap" target="_blank">facebook.com/joffrey.yap</a></p>
+    </div>
+  </section>
+
+  <footer>© 2026 Joffrey Yap | Built with GitHub Pages</footer>
+
+  <!-- CHATBOX -->
+  <div id="chatbox">
+    <div id="messages"></div>
+    <div class="input-area">
+      <input id="userMessage" type="text" placeholder="Ask me about automation..." autocomplete="off">
+      <button id="sendBtn">Send</button>
+    </div>
   </div>
-  <div class="project" style="border: 1px solid #007bff; border-radius: 10px; width: 80%; margin: 10px;"><h3>Customer Support Workflow</h3>
-    <div class="tech-stack" style="color: #fff;">Tech Stack: React, Redux, Firebase</div>
-    <ul class="features" style="color: #fff;">
-      <li>Real-time chat features for customer service</li>
-      <li>Integration with popular support ticket systems</li>
-      <li>Reporting and analytics dashboard for support agents</li>
-    </ul>
-  </div>
-  <div class="project" style="border: 1px solid #007bff; border-radius: 10px; width: 80%; margin: 10px;"><h3>Conference Info Assistant</h3>
-    <div class="tech-stack" style="color: #fff;">Tech Stack: Python, Flask, SQLAlchemy</div>
-    <ul class="features" style="color: #fff;">
-      <li>Provides real-time event updates and scheduling</li>
-      <li>Speaker profiles and session details</li>
-      <li>User-friendly interface for navigating conferences</li>
-    </ul>
-  </div>
-  <div class="project" style="border: 1px solid #007bff; border-radius: 10px; width: 80%; margin: 10px;"><h3>PreSale AI Agent</h3>
-    <div class="tech-stack" style="color: #fff;">Tech Stack: Java, Spring Boot, REST API</div>
-    <ul class="features" style="color: #fff;">
-      <li>Predictive analysis for product demand</li>
-      <li>Integration with e-commerce platforms</li>
-      <li>Dynamic pricing based on market trends</li>
-    </ul>
-  </div>
-</section>
+
+  <script>
+    const CHAT_URL = "https://talentlush.app.n8n.cloud/webhook/portfolio-chatbot";
+
+    const messagesDiv = document.getElementById("messages");
+    const input = document.getElementById("userMessage");
+    const sendBtn = document.getElementById("sendBtn");
+
+    function addMessage(text, type) {
+      const wrapper = document.createElement("div");
+      wrapper.className = type === "user" ? "user-msg" : "bot-msg" + (type === "error" ? " error-msg" : "");
+      const span = document.createElement("span");
+      span.textContent = text; // textContent prevents HTML injection
+      wrapper.appendChild(span);
+      messagesDiv.appendChild(wrapper);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      return wrapper;
+    }
+
+    async function sendMessage() {
+      const message = input.value.trim();
+      if (!message) return;
+
+      addMessage(message, "user");
+      input.value = "";
+      sendBtn.disabled = true;
+
+      const typing = addMessage("Typing...", "bot");
+
+      try {
+        const response = await fetch(CHAT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message })
+        });
+
+        if (!response.ok) throw new Error("HTTP " + response.status);
+
+        const data = await response.json();
+        typing.remove();
+        addMessage(data.reply || data?.[0]?.reply || "No response from bot", "bot");
+      } catch (err) {
+        typing.remove();
+        addMessage("Error: Could not reach bot.", "error");
+        console.error(err);
+      } finally {
+        sendBtn.disabled = false;
+        input.focus();
+      }
+    }
+
+    sendBtn.addEventListener("click", sendMessage);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+  </script>
+</body>
+</html>
