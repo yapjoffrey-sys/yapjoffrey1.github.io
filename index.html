@@ -1,154 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Joffrey Yap | Automation & IT Support</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joffrey Yap | Automation & IT Support</title>
+<meta name="description" content="Automation and IT support professional. n8n workflows, Playwright, PowerShell, Docker. Working toward QA Automation Engineering.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b1220; --panel:#111a2e; --line:#223152; --text:#dbe4f3; --muted:#8a9bb8;
+  --pass:#5eead4; --warn:#fbbf24; --link:#7dd3fc;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{color-scheme:dark;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:400 16px/1.65 var(--sans)}
+a{color:var(--link)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--warn);outline-offset:3px}
+.wrap{max-width:880px;margin:0 auto;padding:0 22px}
+nav{padding:20px 0;border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:22px;flex-wrap:wrap;align-items:center;font:400 14px var(--mono)}
+nav b{color:var(--pass);margin-right:auto}
+nav a{color:var(--muted);text-decoration:none}
+nav a:hover{color:var(--text)}
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+/* hero */
+.hero{padding:64px 0 48px}
+h1{font:800 clamp(38px,8vw,68px)/1.02 var(--mono);letter-spacing:-.03em}
+.role{margin:14px 0 22px;color:var(--muted);font-size:18px;max-width:60ch}
+.report{background:var(--panel);border:1px solid var(--line);border-radius:10px;font:400 14.5px/1.9 var(--mono);overflow:hidden}
+.report .bar{padding:9px 16px;border-bottom:1px solid var(--line);color:var(--muted);font-size:12.5px}
+.report .body{padding:14px 18px;overflow-x:auto}
+.report .row{white-space:nowrap}
+.ok{color:var(--pass)} .wip{color:var(--warn)} .dim{color:var(--muted)}
+.cursor{display:inline-block;width:8px;height:1em;background:var(--warn);vertical-align:-2px;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.actions{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:11px 20px;border-radius:8px;font:600 14px var(--mono);text-decoration:none;border:1px solid var(--pass);color:var(--pass)}
+.btn.solid{background:var(--pass);color:var(--bg)}
+.btn:hover{background:#99f6e4;color:var(--bg);border-color:#99f6e4}
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-    body { background: #0f172a; color: #e2e8f0; text-align: center; padding: 50px; }
-    header { padding: 60px 20px; }
-    header h1 { font-size: 48px; margin-bottom: 5px; }
-    header p { color: #94a3b8; margin-bottom: 20px; }
-    .button { display: inline-block; padding: 12px 25px; background: #38bdf8; color: #0f172a; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; }
-    .button:hover { background: #0ea5e9; transform: translateY(-2px); }
-    .button-green { background: #22c55e; margin-left: 10px; }
-    section { margin-top: 50px; }
-    .card { background: #1e293b; padding: 30px; margin: 20px auto; width: 80%; border-radius: 16px; transition: 0.3s ease; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-    .card:hover { background: #24344d; transform: translateY(-5px); }
-    h2 { color: #38bdf8; margin-bottom: 15px; }
-    p, ul { text-align: left; margin-left: 10px; }
-    ul li { margin-bottom: 8px; }
-    footer { margin-top: 60px; font-size: 14px; color: #64748b; }
-    .icon-link { color: #38bdf8; text-decoration: none; font-size: 18px; margin-left: 5px; }
-    .icon-link:hover { color: #0ea5e9; }
+/* sections */
+section{padding:42px 0;border-top:1px solid var(--line)}
+h2{font:600 20px var(--mono);margin-bottom:20px}
+h2::before{content:"$ ";color:var(--pass)}
+.job h3{font-size:18px;font-weight:600}
+.job .meta{color:var(--muted);font:400 14px var(--mono);margin:2px 0 14px}
+ul.plain{list-style:none}
+ul.plain li{padding-left:22px;position:relative;margin-bottom:10px}
+ul.plain li::before{content:"✓";position:absolute;left:0;color:var(--pass)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.box{border:1px solid var(--line);border-radius:10px;padding:18px;background:var(--panel)}
+.box h3{font:600 14px var(--mono);color:var(--warn);margin-bottom:8px}
+.box p,.box li{font-size:15px}
+.box ul{list-style:none}
+.box li{padding:2px 0}
+.certs li{padding:9px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.certs li:last-child{border:0}
+.certs span{color:var(--muted);font:400 13px var(--mono)}
+.contact a{display:block;margin-bottom:8px;font:400 15px var(--mono)}
+footer{padding:36px 0 90px;color:var(--muted);font:400 13px var(--mono);border-top:1px solid var(--line)}
 
-    /* CHAT STYLING */
-    #chatbox { position: fixed; bottom: 20px; right: 20px; width: 320px; height: 420px; border-radius: 16px; padding: 15px; background: #0f172a; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #38bdf8; display: flex; flex-direction: column; justify-content: space-between; z-index: 9999; }
-    #messages { flex: 1; overflow-y: auto; margin-bottom: 10px; font-size: 14px; }
-    .input-area { display: flex; }
-    #userMessage { flex: 1; padding: 8px; border-radius: 8px; border: 1px solid #38bdf8; background: #1e293b; color: #e2e8f0; }
-    #sendBtn { padding: 8px 12px; margin-left: 5px; border-radius: 8px; border: none; background: #38bdf8; color: #0f172a; font-weight: bold; cursor: pointer; }
-    #sendBtn:hover { background: #0ea5e9; }
-    #sendBtn:disabled { opacity: 0.6; cursor: not-allowed; }
-    .user-msg { text-align: right; margin-bottom: 8px; }
-    .user-msg span { background: #38bdf8; color: #0f172a; padding: 6px 10px; border-radius: 10px; display: inline-block; text-align: left; }
-    .bot-msg { text-align: left; margin-bottom: 8px; }
-    .bot-msg span { background: #1e293b; border: 1px solid #38bdf8; padding: 6px 10px; border-radius: 10px; display: inline-block; }
-    .error-msg span { color: #f87171; border-color: #f87171; }
-  </style>
+/* chat */
+#chatToggle{position:fixed;right:18px;bottom:18px;z-index:50;padding:12px 18px;border-radius:999px;border:1px solid var(--pass);background:var(--bg);color:var(--pass);font:600 14px var(--mono);cursor:pointer}
+#chatToggle:hover{background:var(--pass);color:var(--bg)}
+#chatbox{position:fixed;right:18px;bottom:72px;z-index:50;width:min(340px,calc(100vw - 36px));height:min(430px,70vh);display:none;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.5)}
+#chatbox.open{display:flex}
+#chatHead{padding:11px 14px;border-bottom:1px solid var(--line);font:600 13px var(--mono);color:var(--muted)}
+#messages{flex:1;overflow-y:auto;padding:12px 14px;font-size:14px}
+.msg{margin-bottom:10px;display:flex}
+.msg.user{justify-content:flex-end}
+.msg span{padding:7px 11px;border-radius:10px;max-width:88%;white-space:pre-wrap}
+.msg.user span{background:var(--pass);color:var(--bg)}
+.msg.bot span{background:var(--bg);border:1px solid var(--line)}
+.msg.error span{color:#fca5a5;border-color:#fca5a5}
+.input-area{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+#userMessage{flex:1;min-width:0;padding:9px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:400 14px var(--sans)}
+#sendBtn{padding:9px 14px;border-radius:8px;border:0;background:var(--pass);color:var(--bg);font:600 13px var(--mono);cursor:pointer}
+#sendBtn:disabled{opacity:.5;cursor:not-allowed}
+@media (prefers-reduced-motion:reduce){.cursor{animation:none}html{scroll-behavior:auto}}
+</style>
 </head>
-
 <body>
-  <header>
-    <h1>Joffrey Yap</h1>
-    <p>Automation Consultant | Workflow Engineer | Docker & n8n Specialist</p>
-    <a href="#contact" class="button">Contact Me</a>
-    <a href="mailto:yapjoffrey@gmail.com" class="button button-green">Hire Me for Automation Projects</a>
-  </header>
+<nav><div class="wrap">
+  <b>joffrey@portfolio:~</b>
+  <a href="#experience">experience</a><a href="#skills">skills</a><a href="#projects">projects</a><a href="#certs">certificates</a><a href="#contact">contact</a>
+</div></nav>
 
-  <section>
-    <div class="card">
-      <h2>About Me</h2>
-      <p>I help businesses automate workflows and optimize IT systems using Docker, n8n, Windows scripting, and secure server deployment. I build clean, scalable, production-ready solutions.</p>
-    </div>
-
-    <div class="card">
-      <h2>Core Skills</h2>
-      <ul>
-        <li>✔ Docker Production Deployment</li>
-        <li>✔ n8n Workflow Automation</li>
-        <li>✔ Ubuntu Server Configuration</li>
-        <li>✔ Windows PowerShell Scripting</li>
-        <li>✔ Secure Device Provisioning</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>Featured Projects</h2>
-      <ul>
-        <li>🚀 Automated Gmail Response System (n8n)</li>
-        <li>🚀 Secure Remote Device Setup SOP</li>
-        <li>🚀 Windows Update Control Script</li>
-      </ul>
-    </div>
-
-    <div class="card" id="contact">
-      <h2>Contact</h2>
-      <p><i class="fa fa-envelope"></i><a class="icon-link" href="mailto:yapjoffrey@gmail.com" target="_blank">yapjoffrey@gmail.com</a></p>
-      <p><i class="fa fa-linkedin"></i><a class="icon-link" href="https://www.linkedin.com/in/joffrey-yap-0a78a62b1/" target="_blank">linkedin.com/in/joffrey-yap-0a78a62b1/</a></p>
-      <p><i class="fa fa-facebook"></i><a class="icon-link" href="https://www.facebook.com/joffrey.yap" target="_blank">facebook.com/joffrey.yap</a></p>
-    </div>
-  </section>
-
-  <footer>© 2026 Joffrey Yap | Built with GitHub Pages</footer>
-
-  <!-- CHATBOX -->
-  <div id="chatbox">
-    <div id="messages"></div>
-    <div class="input-area">
-      <input id="userMessage" type="text" placeholder="Ask me about automation..." autocomplete="off">
-      <button id="sendBtn">Send</button>
+<main class="wrap">
+<header class="hero">
+  <h1>Joffrey Yap</h1>
+  <p class="role">Automation and IT support professional. I build n8n workflows and fix real devices for real customers. Next goal: QA Automation Engineer.</p>
+  <div class="report" role="img" aria-label="Summary of results: 95 percent customer satisfaction, 30 percent fewer returns in 2022, 20 percent faster troubleshooting, currently learning QA automation">
+    <div class="bar">results.log</div>
+    <div class="body">
+      <div class="row"><span class="ok">PASS</span> 95% customer satisfaction <span class="dim">(after-sales support)</span></div>
+      <div class="row"><span class="ok">PASS</span> 30% fewer product returns <span class="dim">(2022)</span></div>
+      <div class="row"><span class="ok">PASS</span> 20% faster troubleshooting <span class="dim">(average)</span></div>
+      <div class="row"><span class="wip">RUN&nbsp;</span> QA automation with Playwright <span class="cursor"></span></div>
     </div>
   </div>
+  <div class="actions">
+    <a class="btn solid" href="mailto:yapjoffrey@gmail.com">Email me</a>
+    <a class="btn" href="#projects">See my projects</a>
+  </div>
+</header>
 
-  <script>
-    const CHAT_URL = "https://talentlush.app.n8n.cloud/webhook/portfolio-chatbot";
+<section id="experience">
+  <h2>experience</h2>
+  <div class="job">
+    <h3>After-Sales Technical Support, Jihoo</h3>
+    <p class="meta">Aug 2019 to present</p>
+    <ul class="plain">
+      <li>Support post-sale customers with fast, precise issue resolution and keep satisfaction at 95%.</li>
+      <li>Diagnose and repair cellphones and accessories. Cut customer return rates by 30% in 2022 with better troubleshooting methods.</li>
+      <li>Introduced streamlined diagnostic procedures that reduced troubleshooting time by 20% on average.</li>
+    </ul>
+  </div>
+  <p class="meta" style="margin-top:22px">Education: Bachelor in Marketing Management and Research, Enverga University</p>
+</section>
 
-    const messagesDiv = document.getElementById("messages");
-    const input = document.getElementById("userMessage");
-    const sendBtn = document.getElementById("sendBtn");
+<section id="skills">
+  <h2>skills</h2>
+  <div class="grid">
+    <div class="box"><h3>Automation</h3><ul><li>n8n workflows</li><li>AI agents with n8n</li><li>Playwright (learning)</li></ul></div>
+    <div class="box"><h3>IT and servers</h3><ul><li>Ubuntu server setup</li><li>Docker</li><li>PowerShell scripting</li></ul></div>
+    <div class="box"><h3>Support</h3><ul><li>Technical support</li><li>Hardware diagnosis and repair</li><li>Problem solving and communication</li></ul></div>
+  </div>
+</section>
 
-    function addMessage(text, type) {
-      const wrapper = document.createElement("div");
-      wrapper.className = type === "user" ? "user-msg" : "bot-msg" + (type === "error" ? " error-msg" : "");
-      const span = document.createElement("span");
-      span.textContent = text; // textContent prevents HTML injection
-      wrapper.appendChild(span);
-      messagesDiv.appendChild(wrapper);
-      messagesDiv.scrollTop = messagesDiv.scrollHeight;
-      return wrapper;
-    }
+<section id="projects">
+  <h2>projects</h2>
+  <div class="grid">
+    <div class="box"><h3>Automated Gmail replies</h3><p>An n8n workflow that reads incoming email and sends responses automatically.</p></div>
+    <div class="box"><h3>Remote device setup SOP</h3><p>A written procedure for provisioning devices remotely and securely.</p></div>
+    <div class="box"><h3>Windows update control</h3><p>A PowerShell script that controls when and how Windows updates run.</p></div>
+  </div>
+</section>
 
-    async function sendMessage() {
-      const message = input.value.trim();
-      if (!message) return;
+<section id="certs">
+  <h2>certificates</h2>
+  <ul class="certs plain" style="list-style:none">
+    <li style="padding-left:0">Information Technology Fundamentals, IBM SkillsBuild <span>Apr 2025</span></li>
+    <li style="padding-left:0">n8n for Beginners: Build Automation from Scratch, Udemy <span>Dec 2025</span></li>
+    <li style="padding-left:0">Build AI Agents with n8n, LinkedIn Learning <span>Jan 2026</span></li>
+    <li style="padding-left:0">Automate Your Work with n8n, LinkedIn Learning <span>Jan 2026</span></li>
+    <li style="padding-left:0">Microsoft Security Essentials, LinkedIn Learning <span>Jan 2026</span></li>
+  </ul>
+</section>
 
-      addMessage(message, "user");
-      input.value = "";
-      sendBtn.disabled = true;
+<section id="contact" class="contact">
+  <h2>contact</h2>
+  <p style="margin-bottom:14px">Available immediately. Email is the fastest way to reach me, or ask my chatbot a question.</p>
+  <a href="mailto:yapjoffrey@gmail.com">yapjoffrey@gmail.com</a>
+  <a href="https://www.linkedin.com/in/joffrey-yap-0a78a62b1/" target="_blank" rel="noopener">linkedin.com/in/joffrey-yap-0a78a62b1</a>
+  <a href="https://www.facebook.com/joffrey.yap" target="_blank" rel="noopener">facebook.com/joffrey.yap</a>
+  <a href="https://github.com/yapjoffrey-sys" target="_blank" rel="noopener">github.com/yapjoffrey-sys</a>
+</section>
+</main>
 
-      const typing = addMessage("Typing...", "bot");
+<footer><div class="wrap">© 2026 Joffrey Yap. Built with GitHub Pages.</div></footer>
 
-      try {
-        const response = await fetch(CHAT_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message })
-        });
+<button id="chatToggle" aria-expanded="false" aria-controls="chatbox">Ask my bot</button>
+<div id="chatbox" role="dialog" aria-label="Chat with Joffrey’s bot">
+  <div id="chatHead">chatbot</div>
+  <div id="messages" aria-live="polite"></div>
+  <div class="input-area">
+    <input id="userMessage" type="text" placeholder="Ask about my work" autocomplete="off" aria-label="Your message">
+    <button id="sendBtn">Send</button>
+  </div>
+</div>
 
-        if (!response.ok) throw new Error("HTTP " + response.status);
+<script>
+const CHAT_URL = "https://talentlush.app.n8n.cloud/webhook/portfolio-chatbot";
+const box = document.getElementById("chatbox");
+const toggle = document.getElementById("chatToggle");
+const messagesDiv = document.getElementById("messages");
+const input = document.getElementById("userMessage");
+const sendBtn = document.getElementById("sendBtn");
 
-        const data = await response.json();
-        typing.remove();
-        addMessage(data.reply || data?.[0]?.reply || "No response from bot", "bot");
-      } catch (err) {
-        typing.remove();
-        addMessage("Error: Could not reach bot.", "error");
-        console.error(err);
-      } finally {
-        sendBtn.disabled = false;
-        input.focus();
-      }
-    }
+function addMessage(text, type) {
+  const wrap = document.createElement("div");
+  wrap.className = "msg " + type;
+  const span = document.createElement("span");
+  span.textContent = text;
+  wrap.appendChild(span);
+  messagesDiv.appendChild(wrap);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  return wrap;
+}
 
-    sendBtn.addEventListener("click", sendMessage);
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") sendMessage();
+toggle.addEventListener("click", () => {
+  const open = box.classList.toggle("open");
+  toggle.setAttribute("aria-expanded", open);
+  toggle.textContent = open ? "Close" : "Ask my bot";
+  if (open) {
+    if (!messagesDiv.children.length) addMessage("Hi, I’m Joffrey’s assistant. Ask me about his automation and IT support work.", "bot");
+    input.focus();
+  }
+});
+
+async function sendMessage() {
+  const message = input.value.trim();
+  if (!message) return;
+  addMessage(message, "user");
+  input.value = "";
+  sendBtn.disabled = true;
+  const typing = addMessage("Typing...", "bot");
+  try {
+    const response = await fetch(CHAT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message })
     });
-  </script>
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    const data = await response.json();
+    typing.remove();
+    addMessage(data.reply || data?.[0]?.reply || "No response from bot", "bot");
+  } catch (err) {
+    typing.remove();
+    addMessage("Could not reach the bot. Try again later or email me.", "bot error");
+    console.error(err);
+  } finally {
+    sendBtn.disabled = false;
+    input.focus();
+  }
+}
+sendBtn.addEventListener("click", sendMessage);
+input.addEventListener("keydown", e => { if (e.key === "Enter") sendMessage(); });
+</script>
 </body>
 </html>
